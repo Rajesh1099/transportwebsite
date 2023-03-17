@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="css/login.css">
+
+</head>
+
+<body>
+    {{!-- Creating form --}}
+    <form id="login-form" action="/login" method="post">
+        <h2>welcome</h2>
+        <input type="text" name="name" id="name" placeholder="Enter your name" required>
+        <div id="username-error"></div>
+        <input type="password" name="password" id="Password" placeholder="Password" required>
+        <div id="password-error"></div>
+        <input type="submit">
+        <h5>Forgot password?</h5>
+        <h3>Create a new Account &nbsp <a href="/singup" class="register-button">Register</a></h3>
+    </form>
+
+
+
+    <script>
+        // Get the input fields
+        const usernameField = document.getElementById("name");
+        const passwordField = document.getElementById("password");
+
+        // Get the error message elements
+        const usernameError = document.getElementById("username-error");
+        const passwordError = document.getElementById("password-error");
+
+        // Listen for form submission
+        document
+            .getElementById("login-form")
+            .addEventListener("submit", function (event) {
+                // Prevent the form from submitting
+                event.preventDefault();
+
+                // Reset the error messages
+                usernameError.textContent = "";
+                passwordError.textContent = "";
+
+                // Get the values from the input fields
+                const usernameValue = usernameField.value.trim();
+                const passwordValue = passwordField.value.trim();
+
+                // Validate the username
+                if (usernameValue === "") {
+                    usernameError.textContent = "Username is required";
+                    return;
+                }
+
+                // Validate the password
+                if (passwordValue === "") {
+                    passwordError.textContent = "Password is required";
+                    return;
+                }
+
+
+</body >
+</html >

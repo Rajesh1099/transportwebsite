@@ -35,11 +35,11 @@ passport.use(new LocalStrategy(
             console.log(result);
             user = result;
             if (user == null) {
-                return done(null, false, { message: 'Incorrect username.' });
+                return done(null, false,{ message:'user not available'});
 
             }
             if (!bcrypt.compareSync(password, result.password)) {
-                return done(null, false, { message: 'Incorrect password.' });
+                return done(null, false, {message:'Passpord is incorrect'});
             }
             return done(null, user);
         } catch (error) {
@@ -76,7 +76,9 @@ app.post("/signup", async (req, res) => {
     const passhash = await bcrypt.hash(req.body.password, 10) // it encrypts the password  
     const data = {
         name: req.body.name,
-        password: passhash
+        password: passhash,
+        email:req.body.email,
+        phone:req.body.phone
 
     }
     await collection.insertMany([data])  // it will await the connection and insert data into mongodb

@@ -17,6 +17,9 @@
 			<form action="/login" method="post">
 				<img src="img/avatar.svg">
 				<h2 class="title">Welcome</h2>
+				{{#if messages.error}}
+				   {{messages.error}}
+				{{/if}}
            		<div class="input-div one">
            		   <div class="i">
            		   		<i class="fas fa-user"></i>
@@ -35,8 +38,9 @@
            		    	<input type="password" class="input" name="password">
             	   </div>
             	</div>
-            	<a href="#">Forgot Password?</a>
+            	<a class='fp' href="#">Forgot Password?</a>
             	<input type="submit" class="btn" value="Login">
+                <button class="btn"><a class="reg" href="/signup">Register</a></button>
             </form>
         </div>
     </div>

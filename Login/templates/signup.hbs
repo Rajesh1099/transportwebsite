@@ -1,21 +1,123 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
+
 <head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Login Form</title>
+    <link rel="stylesheet" type="text/css" href="css/login.css">
+    <link href="https://fonts.googleapis.com/css?family=Poppins:600&display=swap" rel="stylesheet">
+    <script src="https://kit.fontawesome.com/a81368914c.js"></script>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
 </head>
+
 <body>
-      {{!-- Creating form  --}}
-     <h2>Signup</h2>
-     <form action="/signup" method="post">
-     <input type="text" name="name" id="name" placeholder="Enter your name">
-     <input type="password" name="password" id="Password" placeholder="Password">
-     <input type="submit">
-     </form>
+    <img class="wave" src="img/wave.png">
+    <div class="container">
+        <div class="img">
+            <img src="img/bg.svg">
+        </div>
+        <div class="login-content">
+            <form action="/signup" method="post">
+                <img src="img/avatar.svg">
+                <h2 class="title">Welcome</h2>
+                <div class="input-div one">
+                    <div class="i">
+                        <i class="fas fa-user"></i>
+                    </div>
+                    <div class="div">
+                        <h5>Username</h5>
+                        <input type="text" class="input" name="name" required pattern="[A-Za-z ]{3,}"
+                            title="Please enter at least 3 characters for your name using only alphabets.">
+                    </div>
+                </div>
 
-     
 
+                <div class="input-div email">
+                    <div class="i">
+                        <i class="fas fa-envelope"></i>
+                    </div>
+                    <div class="div">
+                        <h5>email</h5>
+                        <input type="email" class="input" name="email" required
+                            title="Please enter a valid email address.">
+                    </div>
+                </div>
+
+                <div class="input-div phone">
+                    <div class="i">
+                        <i class="fas fa-phone"></i>
+                    </div>
+                    <div class="div">
+                        <h5>Phone</h5>
+                        <input type="tel" class="input" name="phone" required pattern="[0-9]{10}"
+                            title="Please enter a valid 10 digits phone number.">
+                    </div>
+                </div>
+
+
+                <div class="input-div pass">
+                    <div class="i">
+                        <i class="fas fa-lock"></i>
+                    </div>
+                    <div class="div">
+                        <h5>Password</h5>
+                        <input type="password" class="input" name="password" required
+                            pattern="(?=.*\d)(?=.*[A-Z])(?=.*\W)[a-zA-Z0-9\S]{8,}"
+                            title="Please enter a password with at least 8 characters including at least 1 capital letter and 1 special character.">
+                    </div>
+                </div>
+
+                <div class="input-div cnfpass">
+                    <div class="i">
+                        <i class="fas fa-lock"></i>
+                    </div>
+                    <div class="div">
+                        <h5>Confirm Password</h5>
+                        <input type="password" class="input" name="snfpassword" name="confirmPassword" required
+                            pattern="(?=.*\d)(?=.*[A-Z])(?=.*\W)[a-zA-Z0-9\S]{8,}"
+                            title="Please enter a password with at least 8 characters including at least 1 capital letter and 1 special character."
+                            oninput="checkPasswordMatch()">
+                    </div>
+                </div>
+
+
+                <a class='fp' href="/">Already registered!!login</a>
+                {{!-- <input type="submit"  onsumbit="" class="btn" value="Register"> --}}
+                <button type="submit" class="btn" onclick="validate()">Register</button><br>
+            </form>
+        </div>
+    </div>
+    <script type="text/javascript" src="js/sty.js"></script>
+    <script>
+        function checkPasswordMatch() {
+            var password = document.getElementById("password");
+            var confirmPassword = document.getElementById("confirmPassword");
+
+            if (password.value !== confirmPassword.value) {
+                confirmPassword.setCustomValidity("Passwords do not match.");
+            } else {
+                confirmPassword.setCustomValidity("");
+            }
+        }
+
+        function validate() {
+            var name = document.getElementById("name").value;
+            var username = document.getElementById("username").value;
+            var password = document.getElementById("password").value;
+            var confirmPassword = document.getElementById("confirmPassword").value;
+            var email = document.getElementById("email").value;
+            var phone = document.getElementById("phone").value;
+
+            if (name.match(/^[A-Za-z ]{3,}$/) && username.match(/^[A-Za-z0-9_]{3,}$/) && password.match(/^(?=.*[A-Z])(?=.*[!@#$&*])(?=.*[0-9a-z]).{8,}$/) && password === confirmPassword && phone.match(/^[0-9]{10}$/) && email.match(/^.+@.+\..+$/)) {
+                alert("Registration successful");
+            } else {
+                //alert("Registration failed. Please check the form and try again.");
+                return false;
+            }
+        }
+
+
+
+    </script>
 </body>
+
 </html>

@@ -35,11 +35,11 @@ passport.use(new LocalStrategy(
             console.log(result);
             user = result;
             if (user == null) {
-                return done(null, false,{ message:'user not available'});
+                return done(null, false, { message: 'user not available' });
 
             }
             if (!bcrypt.compareSync(password, result.password)) {
-                return done(null, false, {message:'Passpord is incorrect'});
+                return done(null, false, { message: 'Password is incorrect' });
             }
             return done(null, user);
         } catch (error) {
@@ -73,16 +73,26 @@ app.get("/home", (req, res) => {
 // post works when we click the sudmit button
 //req.body.name( in forms name:name / name:password) so we use the rhs part to fetch the data 
 app.post("/signup", async (req, res) => {
-    const passhash = await bcrypt.hash(req.body.password, 10) // it encrypts the password  
+
+
+    const passhash = await bcrypt.hash(req.body.password, 10)
+    const cnfpass = req.body.confirmPassword  // it encrypts the password
     const data = {
         name: req.body.name,
         password: passhash,
-        email:req.body.email,
-        phone:req.body.phone
+        email: req.body.email,
+        phone: req.body.phone
 
     }
-    await collection.insertMany([data])  // it will await the connection and insert data into mongodb
-    res.render("login")
+    if (cnfpass == req.body.password) {
+        await collection.insertMany([data])
+        req.flash('error', 'Registration successfull') // it will await the connection and insert data into mongodb
+        res.redirect("/")
+    }
+    else{
+        req.flash('error','Password dont match')
+        res.redirect("/signup")
+    }
 
 })
 

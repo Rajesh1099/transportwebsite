@@ -182,8 +182,19 @@ form{
 	cursor: pointer;
 	transition: .5s;
 }
+.sb{
+	text-decoration: none;
+	color: rgba(0, 0, 0, 0.571);
+}
+.sb:hover{
+	color:#32be8f
+}
 
 
+.loglogo{
+	
+	border-radius: 50%;
+}
 
 .btn:hover{
 	background-position: right;

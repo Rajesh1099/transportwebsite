@@ -21,7 +21,7 @@
                 <img class="loglogo" src="img/logo.jpg">
                 <h2 class="title">Welcome</h2>
                 {{#if messages.error}}
-                {{messages.error}}
+                 <div class="flashcolor">{{messages.error}}</div>
                 {{/if}}
                 <div class="input-div one">
                     <div class="i">
@@ -85,8 +85,7 @@
 
 
                 <a class='fp' href="/">Already Registered?&nbsp Login</a>
-                {{!-- <input type="submit" onsumbit="" class="btn" value="Register"> --}}
-                <button type="submit" class="btn" onclick="validate()">Register</button><br>
+                <button type="submit" class="btn">Register</button><br>
             </form>
         </div>
     </div>
